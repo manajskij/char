@@ -15,5 +15,11 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+    #noinspection RubyArgCount
+    users = User.all.take(6)
+    50.times do
+      content = Faker::Lorem.sentence(5)
+      users.each { |user| user.problems.create!(content: content) }
+    end
   end
 end
