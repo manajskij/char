@@ -7,6 +7,7 @@ gem 'rails', '4.2.3'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '3.3.5.1'
 gem 'ckeditor', '4.1.2'
+gem 'paperclip', '4.3.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views

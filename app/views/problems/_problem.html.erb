@@ -1,8 +1,9 @@
+<% full_sanitizer = Rails::Html::FullSanitizer.new %>
 <li>
   <span class="user"><%= problem.user.name %></span>
-
-    <%= sanitize(problem.content) %>
-
+    <% problem.content.gsub!("\r","") %>
+    <% result = full_sanitizer.sanitize(problem.content) %>
+   <span class="content"><%= truncate(result, length: 140) %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(problem.created_at) %> ago.
   </span>

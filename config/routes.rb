@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :problems, only: [:new, :create, :destroy]
