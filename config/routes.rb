@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :problems, only: [:new, :create, :destroy]
+  resources :problems do
+    member do
+      get :comments
+    end
+  end
+  resources :comments
 
   get 'static_pages/help'
   root  'static_pages#home'

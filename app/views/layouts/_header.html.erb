@@ -1,12 +1,11 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "ЭЛК", root_path, id: "logo" %>
+    <%= link_to "Проблемы, исследования, задачи, думы единого центра.", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Хомяк",   root_path %></li>
         <li><%= link_to "Help",   '#' %></li>
         <% if signed_in? %>
-            <li><%= link_to "Создать проблемму", new_problem_path %></li>
+            <li><%= link_to "Создать проблему", new_problem_path %></li>
             <li><%= link_to "Пользователи", users_path %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= current_user.name %> <b class="caret"></b>
