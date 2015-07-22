@@ -5,10 +5,4 @@
 <% else %>
     <h1>Nothing to do here!</h1>
 <% end %>
-<%= form_for(@comment) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <div class="field">
-      <%= f.cktext_area :comment %>
-    </div>
-    <%= f.submit "Создать!", class: "btn btn-large btn-primary" %>
-<% end %>
+<%=render 'comment' %>

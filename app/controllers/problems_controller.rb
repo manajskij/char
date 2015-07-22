@@ -4,7 +4,7 @@ class ProblemsController < ApplicationController
 
   def show
     @problem = Problem.find(params[:id])
-    @comment = @problem.comments.build
+    @comment = current_user.comments.build
   end
 
   def new

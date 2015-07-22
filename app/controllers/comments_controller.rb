@@ -4,9 +4,20 @@ class CommentsController < ApplicationController
   end
 
   def create
-#    @problem = Problem.find(params[:id])
+    @problem = Problem.find(params[:id])
 #    @comment = @problem.id
 #    @comment = current_user.problems.build
+    @comment = @problem.comments.build(comment_params)
+    if @comment.save!
+      flash[:succes] = 'Комментарий создан!'
+      redirect_to root_url
+    else
+      render 'static_pages/home'
+    end
+  end
+
+  def comment
+    @problem = Problem.find(params[:id])
     @comment = @problem.comments.build(comment_params)
     if @comment.save!
       flash[:succes] = 'Комментарий создан!'
