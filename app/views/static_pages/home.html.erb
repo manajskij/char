@@ -4,6 +4,9 @@
   <li>
     <% problem.content.gsub!("\r","") %>
     <% result = full_sanitizer.sanitize(problem.content) %>
+    <% if result.eql?("\n") %>
+        <% result = "Результат" %>
+    <% end %>
     <span class="content"><%= link_to truncate(result, length: 140), problem_path(problem.id) %></span>
     <span class="timestamp">Добаленно <span class="user"><%= problem.user.name %></span>
     <%= time_ago_in_words(problem.created_at) %> ago.</span>

@@ -1,8 +1,21 @@
-<%= @problem.content.html_safe %><br>
-<% if !current_user.nil? %>
-    <%= link_to "Комментировать", new_comment_path %><br>
-    <%= link_to "Создать брифинг", '#' %>
-<% else %>
-    <h1>Nothing to do here!</h1>
+<span class="problems">
+<span class="content"><%= @problem.content.html_safe %></span>
+  <hr>
+<% @comments.each do |comment|  %>
+<span class=""><%= comment.comment.html_safe %></span>
+<span class="timestamp">Добавленно <span class="user"><%= comment.user.name %></span>
+<%= time_ago_in_words(comment.created_at) %></span>
+    <hr>
 <% end %>
-<%=render 'comment' %>
+<% if !current_user.nil? %>
+    <%= form_for([@problem, @problem.comments.build]) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="field">
+          <%= f.cktext_area :comment %>
+        </div>
+        <%= f.submit "Создать!", class: "btn btn-large btn-primary" %>
+    <% end %>
+<% else %>
+    <h1>Для добавления комментария пожалуйста зарегестрируйтесь или войдите!</h1>
+<% end %>
+</span>

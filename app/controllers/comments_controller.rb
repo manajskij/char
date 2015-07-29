@@ -1,27 +1,13 @@
 class CommentsController < ApplicationController
-  def new
-    @comment = @problem.comments.build
-  end
 
   def create
-    @problem = Problem.find(params[:id])
-#    @comment = @problem.id
-#    @comment = current_user.problems.build
-    @comment = @problem.comments.build(comment_params)
-    if @comment.save!
-      flash[:succes] = 'Комментарий создан!'
-      redirect_to root_url
-    else
-      render 'static_pages/home'
-    end
-  end
+    @problem = Problem.find(params[:problem_id])
 
-  def comment
-    @problem = Problem.find(params[:id])
-    @comment = @problem.comments.build(comment_params)
+    @comment = @problem.comments.create(comment_params)
+    @comment.user_id = current_user.id
     if @comment.save!
       flash[:succes] = 'Комментарий создан!'
-      redirect_to root_url
+      redirect_to problem_path(@problem)
     else
       render 'static_pages/home'
     end
