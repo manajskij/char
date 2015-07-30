@@ -1,10 +1,10 @@
-<span class="problems">
-<span class="content"><%= @problem.content.html_safe %></span>
+<div class="problems">
+<div class="problem"><%= @problem.content.html_safe %></div>
   <hr>
 <% @comments.each do |comment|  %>
-<span class=""><%= comment.comment.html_safe %></span>
-<span class="timestamp">Добавленно <span class="user"><%= comment.user.name %></span>
-<%= time_ago_in_words(comment.created_at) %></span>
+<div class="comment"><%= comment.comment.html_safe %></div>
+<div class="timestamp">Добавленно <span class="user"><%= comment.user.name %></span>
+<%= time_ago_in_words(comment.created_at) %></div>
     <hr>
 <% end %>
 <% if !current_user.nil? %>
@@ -16,6 +16,6 @@
         <%= f.submit "Создать!", class: "btn btn-large btn-primary" %>
     <% end %>
 <% else %>
-    <h1>Для добавления комментария пожалуйста зарегестрируйтесь или войдите!</h1>
+    <h2>Для добавления комментария пожалуйста зарегистрируйтесь или войдите!</h2>
 <% end %>
-</span>
+</div>

@@ -9,7 +9,7 @@
   </aside>
   <div class="span8">
     <% if @user.problems.any? %>
-        <h3>Проблеммы (<%= @user.problems.count %>)</h3>
+        <h3>Проблемы (<%= @user.problems.count %>)</h3>
         <ol class="problems">
           <%= render @problems %>
         </ol>

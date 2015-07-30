@@ -194,7 +194,23 @@ aside {
     padding-top: 0;
     font-size: 8pt;
     color: black;
+  }
 
+  .comment{
+    display: block;
+    width: 100%;
+    clear: both;
+    float: left;
+  }
+  .problem{
+    display: block;
+    margin-left: 10px;
+    background-color: #CCCCCC;
+    border: 4px double darkred;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
   }
   .content {
     display: block;
