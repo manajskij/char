@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :problems, dependent: :destroy
   has_many :comments, through: :problems
+  has_many :briefings, dependent: :destroy
+  has_many :change_briefings, through: :briefings
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   validates :name,  presence: true, length: { maximum: 50 }

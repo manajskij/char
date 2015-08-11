@@ -5,12 +5,21 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Help",   '#' %></li>
         <% if signed_in? %>
-            <li><%= link_to "Создать проблему", new_problem_path %></li>
-            <li><%= link_to "Пользователи", users_path %></li>
+            <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <b class="caret"></b> <%= "Приблемы/Брифинги"%> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><%= link_to "Создать проблему", new_problem_path %></li>
+                    <li><%= link_to "Проблемы", root_url %></li>
+                    <li><%= link_to "Брифинги", briefings_path %> </li>
+                </ul>
+            </li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= current_user.name %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
+                <li><%= link_to "Пользователи", users_path %></li>
                 <li><%= link_to "Профиль", current_user %></li>
                 <li><%= link_to "Настройки", edit_user_path(current_user) %></li>
                 <li class="divider"></li>

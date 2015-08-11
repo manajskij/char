@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803090653) do
+ActiveRecord::Schema.define(version: 20150806115724) do
 
   create_table "briefings", force: :cascade do |t|
     t.text     "brief"
@@ -24,15 +24,16 @@ ActiveRecord::Schema.define(version: 20150803090653) do
   add_index "briefings", ["user_id", "created_at"], name: "index_briefings_on_user_id_and_created_at"
 
   create_table "change_briefings", force: :cascade do |t|
-    t.text     "chbrief"
-    t.integer  "brief_id"
+    t.text     "brief"
+    t.integer  "briefing_id"
     t.integer  "user_id"
-    t.boolean  "closed",     default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "closed",      default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
-  add_index "change_briefings", ["brief_id", "user_id", "created_at"], name: "index_change_briefings_on_brief_id_and_user_id_and_created_at"
+  add_index "change_briefings", ["briefing_id"], name: "index_change_briefings_on_briefing_id"
+  add_index "change_briefings", ["user_id", "created_at"], name: "index_change_briefings_on_user_id_and_created_at"
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
@@ -65,8 +66,9 @@ ActiveRecord::Schema.define(version: 20150803090653) do
   create_table "problems", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "closed",     default: false
   end
 
   add_index "problems", ["user_id", "created_at"], name: "index_problems_on_user_id_and_created_at"

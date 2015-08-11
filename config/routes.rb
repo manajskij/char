@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :briefings
+
 
   get 'static_pages/help'
   root  'static_pages#home'

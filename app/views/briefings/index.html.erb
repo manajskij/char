@@ -1,0 +1,23 @@
+<h1>Брифинги</h1>
+<ol class="problems">
+  <% full_sanitizer = Rails::Html::FullSanitizer.new %>
+  <% @briefing.each do |briefing| %>
+      <% result = briefing.change_briefings.last.brief.gsub!("\r","") %>
+      <% result = full_sanitizer.sanitize(result) %>
+      <% if result.nil? or result.eql?("\n") %>
+          <% result = "<В этом брифинге нет текста>" %>
+      <% end %>
+      <li>
+        <div class="spoiler">
+          <span class="content" onclick="showSpoiler(this);">
+                <%= truncate(result, length: 140 ) %>
+          </span>
+          <div class="inner" style="display:none;">
+            <span class="problem"><%= briefing.change_briefings.last.brief.html_safe %></span>
+            <br>
+            <%= link_to "Редактировать", edit_briefing_path(briefing.id) %>
+          </div>
+        </div>
+      </li>
+  <% end %>
+</ol>

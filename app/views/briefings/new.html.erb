@@ -1,0 +1,14 @@
+<% text = @problem.content %>
+<% @comment.each do |comment| %>
+<% text = text + "<hr>" %>
+<% text = text + comment.comment %>
+<% end %>
+
+<%= form_for(@briefing) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+      <%= f.cktext_area :brief, :value => text %>
+      <%= f.hidden_field :problem_id, :value => @problem.id  %>
+    </div>
+    <%= f.submit "Создать брифинг!", class: "btn btn-large btn-primary" %>
+<% end %>

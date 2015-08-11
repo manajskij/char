@@ -1,16 +1,19 @@
+<h1>Пробмлемы</h1>
 <ol class="problems">
   <% full_sanitizer = Rails::Html::FullSanitizer.new %>
   <% @problems.each do |problem| %>
+      <% if !problem.closed %>
   <li>
     <% problem.content.gsub!("\r","") %>
     <% result = full_sanitizer.sanitize(problem.content) %>
     <% if result.eql?("\n") %>
-        <% result = "В этой проблеме нет текста" %>
+        <% result = "<В этой проблеме нет текста>" %>
     <% end %>
     <span class="content"><%= link_to truncate(result, length: 140), problem_path(problem.id) %></span>
     <span class="timestamp">Добаленно <span class="user"><%= problem.user.name %></span>
     <%= time_ago_in_words(problem.created_at) %> ago.</span>
   </li>
+  <% end %>
   <% end %>
 </ol>
 <%= will_paginate @problems %>

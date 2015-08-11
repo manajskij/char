@@ -1,0 +1,9 @@
+<h1>Редактировать брифинг</h1>
+
+<%= form_for(@briefing) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+      <%= f.cktext_area :brief, :value => @briefing.change_briefings.last.brief %>
+    </div>
+    <%= f.submit "Редактировать.", class: "btn btn-large btn-primary" %>
+<% end %>

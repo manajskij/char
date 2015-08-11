@@ -16,3 +16,9 @@
 //= require ckeditor/init
 //= require turbolinks
 //= require_tree .
+
+function showSpoiler(obj) {
+    var inner = obj.parentNode.getElementsByTagName("div")[0];
+    if (inner.style.display == "none") inner.style.display = "";
+    else inner.style.display = "none";
+}
